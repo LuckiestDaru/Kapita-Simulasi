@@ -18,20 +18,20 @@ client = MongoClient(
     server_api=ServerApi("1")
 )
 
-db = client["tes"]
-clients = db["clients"]
+db = client["kapita"]
+tes1 = db["tes1"]
 
 
 # =========================
 # Client Resource
 # =========================
 
-class Client(Resource):
+class tes1(Resource):
 
     def get(self):
         data = []
 
-        for client in clients.find():
+        for client in tes1.find():
             data.append({
                 "id": str(client["_id"]),
                 "name": client.get("name"),
@@ -40,7 +40,7 @@ class Client(Resource):
 
         return data, 200
 
-api.add_resource(Client, "/clients")
+api.add_resource(tes1, "/tes1")
 
 if __name__ == "__main__":
     app.run(debug=True)
