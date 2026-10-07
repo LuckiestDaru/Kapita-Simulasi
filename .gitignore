@@ -1,0 +1,52 @@
+# Lingkungan Virtual (Virtual Environment)
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribusi / Paket (Jika Anda membuat library)
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# File Konfigurasi Sensitif (Token, API Key, Password)
+.env
+.env.secret
+.env.shared
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Sistem Operasi (File sampah OS)
+.DS_Store
+Thumbs.db
+
+# IDE / Text Editor (Opsional, abaikan jika tidak pakai)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
