@@ -12,15 +12,15 @@ api = Api(app)
 # MongoDB
 # =========================
 
-mongo_uri = os.getenv("MONGO_URI")
+mongo_uri = os.getenv("MONGODB_URI")
 
 client = MongoClient(
     mongo_uri,
     server_api=ServerApi("1")
 )
 
-db = client["kapita"]
-tes1_collection = db["tes1"]
+db = client["sample_mflix"]
+tes1_collection = db["movies"]
 
 
 # =========================
@@ -35,8 +35,7 @@ class Tes1(Resource):
         for document in tes1_collection.find():
             data.append({
                 "id": str(document["_id"]),
-                "name": document.get("name"),
-                "email": document.get("email")
+                "name": document.get("title")
             })
 
         return data, 200
