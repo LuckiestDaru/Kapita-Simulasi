@@ -41,7 +41,7 @@ class Tes1(Resource):
         return data, 200
 
 
-api.add_resource(Tes1, "/tes1")
+api.add_resource(Tes1, "/")
 
 
 if __name__ == "__main__":
