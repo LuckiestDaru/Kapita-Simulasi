@@ -7,42 +7,40 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
-
 # =========================
 # MongoDB
 # =========================
 
-mongo_uri = os.getenv("MONGODB_URI")
+mongo_uri = os.getenv("MONGO_URI")
 
 client = MongoClient(
     mongo_uri,
     server_api=ServerApi("1")
 )
 
-db = client["sample_mflix"]
-tes1_collection = db["movies"]
+db = client["kapita"]
+tes1 = db["tes1"]
 
 
 # =========================
 # Client Resource
 # =========================
 
-class Tes1(Resource):
+class tes1(Resource):
 
     def get(self):
         data = []
 
-        for document in tes1_collection.find():
+        for client in tes1.find():
             data.append({
-                "id": str(document["_id"]),
-                "name": document.get("title")
+                "id": str(client["_id"]),
+                "name": client.get("name"),
+                "email": client.get("email")
             })
 
         return data, 200
 
-
-api.add_resource(Tes1, "/")
-
+api.add_resource(tes1, "/")
 
 if __name__ == "__main__":
     app.run(debug=True)
