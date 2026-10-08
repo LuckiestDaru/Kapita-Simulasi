@@ -19,8 +19,8 @@ client = MongoClient(
     server_api=ServerApi("1")
 )
 
-db = client["kapita"]
-tes1_collection = db["tes1"]
+db = client["sample_mflix"]
+tes1_collection = db["movies"]
 
 
 # =========================
@@ -35,14 +35,13 @@ class Tes1(Resource):
         for document in tes1_collection.find():
             data.append({
                 "id": str(document["_id"]),
-                "name": document.get("name"),
-                "email": document.get("email")
+                "name": document.get("title")
             })
 
         return data, 200
 
 
-api.add_resource(Tes1, "/")
+api.add_resource(Tes1, "/tes1")
 
 
 if __name__ == "__main__":
