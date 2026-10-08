@@ -7,6 +7,7 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
+
 # =========================
 # MongoDB
 # =========================
@@ -19,28 +20,30 @@ client = MongoClient(
 )
 
 db = client["kapita"]
-tes1 = db["tes1"]
+tes1_collection = db["tes1"]
 
 
 # =========================
 # Client Resource
 # =========================
 
-class tes1(Resource):
+class Tes1(Resource):
 
     def get(self):
         data = []
 
-        for client in tes1.find():
+        for document in tes1_collection.find():
             data.append({
-                "id": str(client["_id"]),
-                "name": client.get("name"),
-                "email": client.get("email")
+                "id": str(document["_id"]),
+                "name": document.get("name"),
+                "email": document.get("email")
             })
 
         return data, 200
 
-api.add_resource(tes1, "/tes1")
+
+api.add_resource(Tes1, "/tes1")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
